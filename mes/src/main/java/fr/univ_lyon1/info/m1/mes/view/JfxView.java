@@ -73,8 +73,12 @@ public class JfxView {
         newP.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
-                EasyAlert.alert("Action not implemented yet.");
+                final String txtname = nameT.getText().trim();
+                final String txtssid = ssIDT.getText().trim();
+                mes.createPatient(txtname, txtssid);
+                createPatientsWidget();
             }
+            
         });
     }
 }

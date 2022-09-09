@@ -44,6 +44,6 @@ public class MES {
         a.addPrescription(w, "Sport twice a week");
         b.addPrescription(w, "Whatever placebo, you're not sick");
         b.addPrescription(s, "Snake oil");
-
+        new Chirurgien("Dr. Mundo", this);
     }
 }
