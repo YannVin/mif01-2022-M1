@@ -1,7 +1,7 @@
 package fr.univ_lyon1.info.m1.mes.view;
 
 import fr.univ_lyon1.info.m1.mes.model.Patient;
-import fr.univ_lyon1.info.m1.mes.utils.EasyAlert;
+//import fr.univ_lyon1.info.m1.mes.utils.EasyAlert;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
