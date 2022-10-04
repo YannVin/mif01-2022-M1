@@ -8,7 +8,7 @@
   Attention : les groupes ne sont pas correctement entrés dans ADE.
   Utilisez la ressource "M1 informatique" **plus les groupes de TD** pour voir l'emploi du temps.
 
-* Rendu du TP noté : vous devez avoir rempli le champ URL de TOMUSS avant TODO. Le rendu final est le 11 décembre 2022 à 23h59. Voir
+* Rendu du TP noté : vous devez avoir rempli le champ URL de TOMUSS avant le 16 septembre 2022. Le rendu final est le 11 décembre 2022 à 23h59. Voir
   [projet-note.md](projet-note.md) pour un récapitulatif des consignes.
 
 * Examen : TODO. 1h30 (sauf tiers-temps) Consignes : Seules 5
@@ -36,9 +36,9 @@ Barème : 50% examen / 50% TP. Seul l'examen est rattrapable en session 2.
 
 Si la situation sanitaire le permet, le cours sera en 100% présentiel, mais les étudiants qui le souhaitent peuvent utiliser les vidéos préparées en 2020 pour les cours magistraux (disponibles sur le mediacenter Lyon 1, et sur la [playlist youtube](https://www.youtube.com/playlist?list=PL6-YbcqXawf5ED3NHDZYejWJaAschnrO0)).
 
-Vous pouvez interagir avec les enseignants sur ce canal : [mif01-2022](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2F2JrtZP). Vous pouvez utiliser ce canal pour poser vos questions, faire des remarques, demander de l'aide, ... pendant les séances et en dehors (nous ferons notre possible pour lire les messages au moins une fois par jour en semaine). D'autres canaux pourront être créés si besoin. Il est recommandé d'avoir le tchat ouvert même si vous êtes physiquement présents au Nautibus : vous pouvez poser des questions sur le tchat si vous pensez qu'elles intéressent d'autres étudiants, et nous utiliserons peut-être ce canal pour passer des informations à tout le monde pendant les séances.
+Vous pouvez interagir avec les enseignants sur ce canal : [mif01-2022](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2F2JrtZP). Vous pouvez utiliser ce canal pour poser vos questions, faire des remarques, demander de l'aide, ... pendant les séances et en dehors (nous ferons notre possible pour lire les messages au moins une fois par jour en semaine). D'autres canaux pourront être créés si besoin. Il est recommandé d'avoir le tchat ouvert même si vous êtes physiquement présents au Nautibus : vous pouvez poser des questions sur le tchat si vous pensez qu'elles intéressent d'autres étudiants, et nous utiliserons peut-être ce canal pour passer des informations à tout le monde pendant les séances. Il y a un canal dédié `cherche-binome`, accessible en cliquant sur l'icône `#` en haut à droite depuis le canal du cours, ou bien directement ici : [mif01-cherche-binome](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2F5pcnoj).
 
-`chat-info` utilise le logiciel [RocketChat](https://rocket.chat/), vous pouvez l'utiliser dans un navigateur, et/ou installer le client RocketChat sur votre PC, Mac ou smartphone. Dans tous les cas il est indispensable de suivre le lien d'invitation pour s'inscrire au canal : [mif01](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fi5Lsmn).
+`chat-info` utilise le logiciel [RocketChat](https://rocket.chat/), vous pouvez l'utiliser dans un navigateur, et/ou installer le client RocketChat sur votre PC, Mac ou smartphone. Dans tous les cas il est indispensable de suivre le lien d'invitation pour s'inscrire au canal : [mif01](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2F2JrtZP).
 
 ## Nouvelles du cours
 

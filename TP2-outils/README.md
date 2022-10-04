@@ -301,9 +301,12 @@ Votre fork est déjà enregistré comme remote `origin` au moment du `git clone`
 Pour récupérer les mises à jour du dépôt enseignant, faites (à chaque fois qu'il y a des nouveautés dans le dépôt enseignant) :
 
 ```sh
-git pull moy main  # Récupérer les modifications en local
+git pull --no-rebase moy main  # Récupérer les modifications en local
 git push  # Les envoyer vers votre fork privé
 ```
+
+L'option `--no-rebase` est pertinente ici pour éviter de rebaser l'ensemble de
+votre historique par dessus l'historique du dépôt enseignant.
 
 En résumé :
 
@@ -311,7 +314,7 @@ En résumé :
 git commit          # enregistrer vos modifications, localement
 git pull            # récupérer les changements depuis votre fork (de votre binôme)
 git push            # envoyer des changements à votre fork
-git pull moy main # récupérer les mises à jour du dépôt enseignant
+git pull --no-rebase moy main # récupérer les mises à jour du dépôt enseignant
 ```
 
 ## Maven
@@ -357,35 +360,59 @@ mvn compile
 mvn exec:java
 ```
 
-Ou bien, on peut lancer l'application via la commande `java` après
-avoir généré le `.jar` avec `mvn install`:
-
-```sh
-# Pour cette fois, on autorise la construction du .jar même en
-# présence d'erreur dans le tests et le style (-DskipTests
-# -Dcheckstyle.skip) :
-mvn -DskipTests  -Dcheckstyle.skip install
-```
-
 ### Packaging
 
 Le plugin `maven-assembly-plugin` est configuré pour vous pour
 générer un jar exécutable incluant les bibliothèques utilisées (voir
 [ici](http://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven)).
 
+Par défaut, Maven va refuser de packager une application qui ne passe pas les tests, mais on peut lancer le packaging pour générer un fichier `.jar` comme ceci :
+
+```sh
+# Pour cette fois, on autorise la construction du .jar même en
+# présence d'erreur dans le tests et le style (-DskipTests
+# -Dcheckstyle.skip) :
+mvn -DskipTests  -Dcheckstyle.skip package
+```
+
 Tester en lancer java via (adaptez l'argument de `--module-path` à
 votre installation si besoin) :
 
-Sous Linux au Nautibus :
+Sous Linux avec le package `openjfx` (nom du paquet pour la distribution Ubuntu, à adapter pour les autres distributions) installé :
+
+```sh
+java --module-path /usr/share/openjfx/lib --add-modules=javafx.controls -jar target/mes-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+```
+
+Si vous utilisez l'installation manuelle au Nautibus, alors la commande sera :
 
 ```sh
 java --module-path /home/tpetu/m1if01/javafx-sdk-11.0.2/lib --add-modules=javafx.controls -jar target/mes-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-Sous Ubuntu avec le package `openjfx` installé :
+Ce fichier `.jar` est donc indépendant de Maven, en utilisation réelle on
+pourrait le distribuer à l'utilisateur final qui pourrait donc lancer
+l'application avec Java et JavaFX installés sur sa machine, mais pas Maven. Bien
+sûr, pour notre TP on peut se contenter de `mvn exec:java` qui fait la même
+chose, et qui est ce que vos enseignants utiliseront pour évaluer vos TPs.
+
+### Documentation et JavaDoc
+
+Maven peut générer un site web pour votre projet, qui inclue les informations de
+base (nom, version, etc) et les dépendances en fonction du contenu du `pom.xml`.
+Le `pom.xml` fourni active également JavaDoc, la documentation d'API de votre
+projet sera donc visible dans une section « Project reports » du site web.
+
+Pour lancer la génération du site, faites simplement :
 
 ```sh
-java --module-path /usr/share/openjfx/lib --add-modules=javafx.controls -jar target/mes-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+mvn site
+```
+
+Le site est visible en local dans `target/site/` :
+
+```sh
+firefox target/site/index.html
 ```
 
 ## Intégration continue avec GitLab-CI
