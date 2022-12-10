@@ -1,7 +1,8 @@
 package fr.univ_lyon1.info.m1.mes.view;
 
 import fr.univ_lyon1.info.m1.mes.model.Patient;
-//import fr.univ_lyon1.info.m1.mes.utils.EasyAlert;
+import fr.univ_lyon1.info.m1.mes.Observer.Observer;
+import fr.univ_lyon1.info.m1.mes.controler.ControlerJFX;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,16 +17,20 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JfxView {
+public class JfxView implements Observer {
     private Pane patients = new VBox();
     private Pane healthPro = new VBox();
     private final MES mes;
+    private final ControlerJFX cjfx;
     /**
      * Create the main view of the application.
      */
-    public JfxView(final MES mes, final Stage stage,
-    final int width, final int height) {
+    public JfxView(final MES mes, final Stage stage, final int width, final int height) {
         this.mes = mes;
+        this.cjfx = new ControlerJFX(mes, this);
+
+        mes.register(this);
+        
         // Name of window
         stage.setTitle("Mon Espace Santé");
 
@@ -55,7 +60,7 @@ public class JfxView {
         return healthPro;
     }
 
-    private void createPatientsWidget() {
+    public void createPatientsWidget() {
         patients.getChildren().clear();        
             for (Patient p : mes.getPatients()) {
             final PatientView hpv = new PatientView(p);
@@ -73,12 +78,15 @@ public class JfxView {
         newP.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
-                final String txtname = nameT.getText().trim();
-                final String txtssid = ssIDT.getText().trim();
-                mes.createPatient(txtname, txtssid);
-                createPatientsWidget();
-            }
-            
+                cjfx.ajoutPatient(nameT, ssIDT);
+            }        
         });
     }
+
+    @Override
+    public void update() {
+        createPatientsWidget();
+    }
+
+    
 }

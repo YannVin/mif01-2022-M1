@@ -1,0 +1,50 @@
+Patient:
+  - name: Alice Foo
+    ssID: 299010212345678
+
+
+  - name: Bob Bar
+    ssID: 199010212345678
+
+
+  - name: Charles Boz
+    ssID: 102020212345678
+
+
+HealthProfessional:
+  - name: Dr.Who
+    specialite: generalist
+    annee : 2004 
+
+
+  - name: Dr.Strange
+    specialite: dentist
+
+
+  - name: Dr.Hahnemann
+    specialite: Homeopath
+
+
+  - name: Dr.Mundo
+    specialite: chirurgien
+
+
+Prescription:
+  - namepatient: Alice Foo
+    namehp: Dr.Who
+    content: One apple a day
+
+
+  - namepatient: Alice Foo
+    namehp: Dr.Who
+    content: Sport twice a week
+
+
+  - namepatient: Bob Bar
+    namehp: Dr.Who
+    content: Whatever placebo, you're not sick
+
+
+  - namepatient: Bob Bar
+    namehp: Dr.Strange
+    content: Snake oil

@@ -8,10 +8,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import fr.univ_lyon1.info.m1.mes.Builder.HealthProfessionalBuilder;
+import fr.univ_lyon1.info.m1.mes.Strategy.RechercheSSIDStrategy;
+import fr.univ_lyon1.info.m1.mes.controler.ControlerPatient;
+import fr.univ_lyon1.info.m1.mes.model.Chirurgien;
+import fr.univ_lyon1.info.m1.mes.model.Dentist;
+import fr.univ_lyon1.info.m1.mes.model.Generaliste;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
+import fr.univ_lyon1.info.m1.mes.model.Homeopath;
 import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
+import fr.univ_lyon1.info.m1.mes.view.PatientView;
 
 public class HealthProTest {
     MES model = new MES();
@@ -41,9 +49,10 @@ public class HealthProTest {
         HealthProfessional hp = new HealthProfessional("Dr. Smith", model);
         Patient p = model.createPatient("Alice", "20123456789012");
         p.addPrescription(hp, "Do some sport");
+        RechercheSSIDStrategy str = new RechercheSSIDStrategy();
 
         // When
-        List<Prescription> prescriptions = hp.getPrescriptions("20123456789012");
+        List<Prescription> prescriptions = hp.getPrescriptions("20123456789012",str);
 
         // Then
         assertThat(prescriptions, hasItem(
@@ -63,7 +72,8 @@ public class HealthProTest {
         p.addPrescription(hp, "Eat fruits");
 
         // When
-        List<Prescription> prescriptions = hp.getPrescriptions("20123456789012");
+        RechercheSSIDStrategy str = new RechercheSSIDStrategy();
+        List<Prescription> prescriptions = hp.getPrescriptions("20123456789012",str);
 
         // Then
         assertThat(prescriptions, not(
@@ -71,4 +81,113 @@ public class HealthProTest {
                 hasProperty("content", equalTo("Do some sport")))));
     }
 
+    @Test
+    public void HealthProfessionalSpecialiteChirurgien() {
+        //Given
+        HealthProfessionalBuilder chirurgienbuilder = new Chirurgien("Dr.chirurgien", model);
+        HealthProfessional chirurgien = chirurgienbuilder.gethHealthProfessional();
+
+        //When
+        String specialite = chirurgien.getSpecialite();
+
+        //Then
+        assertThat(specialite, is("Chirurgien"));
+    }
+
+    @Test
+    public void HealthProfessionalSpecialiteDentist() {
+        //Given
+        HealthProfessionalBuilder dentistbuilder = new Dentist("Dr.dentist", model);
+        HealthProfessional dentist = dentistbuilder.gethHealthProfessional();
+
+        //When
+        String specialite = dentist.getSpecialite();
+
+        //Then
+        assertThat(specialite, is("Dentiste"));
+    }
+
+    @Test
+    public void HealthProfessionalSpecialiteGeneralist() {
+        //Given
+        HealthProfessionalBuilder generalistbuilder = new Generaliste("Dr.Generalist", model);
+        HealthProfessional generalist = generalistbuilder.gethHealthProfessional();
+
+        //When
+        String specialite = generalist.getSpecialite();
+
+        //Then
+        assertThat(specialite, is("Generaliste"));
+    }
+
+    @Test
+    public void HealthProfessionalSpecialiteHomeopath() {
+        //Given
+        HealthProfessionalBuilder homeopathbuilder = new Homeopath("Dr.Homeopath", model);
+        HealthProfessional homeopath = homeopathbuilder.gethHealthProfessional();
+
+        //When
+        String specialite = homeopath.getSpecialite();
+
+        //Then
+        assertThat(specialite, is("Homeopathe"));
+    }
+
+    @Test
+    public void HealthProfessionalAnneeDiplome() {
+        //Given
+        HealthProfessionalBuilder generalistbuilder = new Generaliste("Dr.generalist", model);
+        generalistbuilder.builderAnneeDiplome(2015);
+        HealthProfessional generalist = generalistbuilder.gethHealthProfessional();
+
+        //When
+        int AnneeDiplome = generalist.getanneeDeDiplome();
+
+        //Then
+        assertThat(AnneeDiplome, is(2015));
+    }
+
+    @Test
+    public void PatientName() {
+        //Given
+        Patient p = model.createPatient("Patient Test", "123456789");
+        
+        //When
+        String name = p.getName();
+
+        //Then
+        assertThat(name, is("Patient Test"));
+    }
+
+    @Test 
+    public void PatientssID() {
+        //Given
+        Patient p = model.createPatient("Patient Test", "123456789");
+        
+        //When
+        String ssID = p.getSSID();
+
+        //Then
+        assertThat(ssID, is("123456789"));
+    }
+
+
+    //PARTIE CONTROLEUR PATIENT
+    /*@Test
+    public void copiessID() {
+        //Given
+        Patient p = model.createPatient("Patient Test", "123456789");
+        PatientView pv = new PatientView(p);
+        ControlerPatient cp = new ControlerPatient(pv, p);
+
+        //When
+        cp.copieSSID();
+
+        //Then
+        
+    }*/
+
+    //PARTIE CONTROLEUR hpro
+
+    //PARTIE CONTROLEUR JFX
 }

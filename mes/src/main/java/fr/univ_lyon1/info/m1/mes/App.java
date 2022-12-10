@@ -17,10 +17,10 @@ public class App extends Application {
     public void start(final Stage stage) throws Exception {
         final MES model = new MES();
         model.createExampleConfiguration();
-        new JfxView(model, stage, 600, 600);
+        new JfxView(model, stage, 650, 750);
 
         // Second view
-        new JfxView(model, stage, 600, 600);
+        //new JfxView(model, new Stage(), 600, 600);
     }
 
 
