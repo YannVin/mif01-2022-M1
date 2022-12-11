@@ -57,7 +57,7 @@ public class MES extends Subject {
     }
 
     public void createExampleConfiguration() throws FileNotFoundException {
-        File file = new File("src/main/java/fr/univ_lyon1/info/m1/mes/model/test.yml");
+        File file = new File("src/main/java/fr/univ_lyon1/info/m1/mes/Ressources/Preconfig.yml");
         InputStream inputStream = new FileInputStream(file);
         Yaml yaml = new Yaml();
         Map<String, List<Object>> data = yaml.load(inputStream);
