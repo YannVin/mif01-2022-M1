@@ -9,7 +9,7 @@ public abstract class HealthProfessionalBuilder {
     public HealthProfessional gethHealthProfessional() {
         return healthProfessional;
     }
-
+    
     public HealthProfessional createNewHP(final String name, final MES mes) {
         healthProfessional = new HealthProfessional(name, mes);
         return healthProfessional;

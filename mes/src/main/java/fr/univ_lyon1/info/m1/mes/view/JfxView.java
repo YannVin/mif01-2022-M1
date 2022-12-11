@@ -10,6 +10,7 @@ import fr.univ_lyon1.info.m1.mes.model.MES;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -46,8 +47,11 @@ public class JfxView implements Observer {
         final VBox root = new VBox(10);
         final HBox root2 = new HBox(10);
         
-        //root.setStyle("-fx-background-color: #ffffff;");
-        
+        ScrollPane scrollpane = new ScrollPane();
+        scrollpane.setFitToHeight(true);
+        scrollpane.setFitToWidth(true);
+        scrollpane.setContent(root);
+
         createPatientsWidget();
         root.getChildren().addAll(createpatients);
         
@@ -64,7 +68,7 @@ public class JfxView implements Observer {
 
         
         // Everything's ready: add it to the scene and display it
-        final Scene scene = new Scene(root, width, height);
+        final Scene scene = new Scene(scrollpane, width, height);
         stage.setScene(scene);
         stage.show();
     }

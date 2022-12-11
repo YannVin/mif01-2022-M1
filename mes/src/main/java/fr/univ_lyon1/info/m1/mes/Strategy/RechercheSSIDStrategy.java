@@ -11,7 +11,7 @@ public class RechercheSSIDStrategy implements RechercheStrategy {
 
     @Override
     public String toString() {
-        String res = "SSID";
+        String res = "ssID";
         return res;
     }
 }

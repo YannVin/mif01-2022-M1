@@ -2,8 +2,6 @@ package fr.univ_lyon1.info.m1.mes.controler;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import fr.univ_lyon1.info.m1.mes.Builder.HealthProfessionalBuilder;
 import fr.univ_lyon1.info.m1.mes.Strategy.RechercheStrategy;
-import fr.univ_lyon1.info.m1.mes.model.Dentist;
-import fr.univ_lyon1.info.m1.mes.model.Homeopath;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
 import fr.univ_lyon1.info.m1.mes.view.HealthProfessionalView;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
@@ -33,12 +31,6 @@ public class ControlerHPro {
 
     public void prescriptionPredefini() {
         predefPrescr.add("Paracetamol");
-        if (hpb instanceof Dentist) {
-            predefPrescr.add("Don't eat for one hour");
-        } else if (hpb instanceof Homeopath) {
-            predefPrescr.add("Natrum Muriaticum 30CH");
-            predefPrescr.add("Sucre 200K");
-        }
     }
 
     public void prescribe(final String prescription,

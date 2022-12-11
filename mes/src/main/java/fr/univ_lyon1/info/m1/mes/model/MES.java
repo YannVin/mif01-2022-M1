@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.yaml.snakeyaml.Yaml;
-
 import fr.univ_lyon1.info.m1.mes.Builder.HealthProfessionalBuilder;
 import fr.univ_lyon1.info.m1.mes.Observer.Subject;
 import fr.univ_lyon1.info.m1.mes.Strategy.RechercheNameStrategy;
@@ -56,6 +54,9 @@ public class MES extends Subject {
         return healthProfessionals;
     }
 
+    /**
+     * Read preconfig.yml, create list of Patient, HealthPRofessional, Prescription.
+     */
     public void createExampleConfiguration() throws FileNotFoundException {
         File file = new File("src/main/java/fr/univ_lyon1/info/m1/mes/Ressources/Preconfig.yml");
         InputStream inputStream = new FileInputStream(file);
@@ -86,7 +87,7 @@ public class MES extends Subject {
             } else if (hpSpecialite.equals("chirurgien")) {
                 hpb = new Chirurgien(hpName, this);
             } else {
-                hpb = new Generaliste(hpName, this);
+                hpb = new Generalist(hpName, this);
             }
             if (hp.get("annee") != null) {
                 Integer hpAnnee = Integer.valueOf(String.valueOf(hp.get("annee")));

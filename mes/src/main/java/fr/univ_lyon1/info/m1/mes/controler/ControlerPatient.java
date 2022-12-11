@@ -15,4 +15,5 @@ public class ControlerPatient {
     public void copieSSID() {
         EasyClipboard.copy(p.getSSID());
     }
+   
 }

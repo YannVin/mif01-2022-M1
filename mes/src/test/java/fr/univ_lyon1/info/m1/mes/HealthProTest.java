@@ -1,25 +1,19 @@
 package fr.univ_lyon1.info.m1.mes;
 
 import static org.hamcrest.Matchers.*;
-
 import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import org.junit.jupiter.api.Test;
-
 import fr.univ_lyon1.info.m1.mes.Builder.HealthProfessionalBuilder;
 import fr.univ_lyon1.info.m1.mes.Strategy.RechercheSSIDStrategy;
-import fr.univ_lyon1.info.m1.mes.controler.ControlerPatient;
 import fr.univ_lyon1.info.m1.mes.model.Chirurgien;
 import fr.univ_lyon1.info.m1.mes.model.Dentist;
-import fr.univ_lyon1.info.m1.mes.model.Generaliste;
+import fr.univ_lyon1.info.m1.mes.model.Generalist;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import fr.univ_lyon1.info.m1.mes.model.Homeopath;
 import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
-import fr.univ_lyon1.info.m1.mes.view.PatientView;
 
 public class HealthProTest {
     MES model = new MES();
@@ -104,20 +98,20 @@ public class HealthProTest {
         String specialite = dentist.getSpecialite();
 
         //Then
-        assertThat(specialite, is("Dentiste"));
+        assertThat(specialite, is("Dentist"));
     }
 
     @Test
     public void HealthProfessionalSpecialiteGeneralist() {
         //Given
-        HealthProfessionalBuilder generalistbuilder = new Generaliste("Dr.Generalist", model);
+        HealthProfessionalBuilder generalistbuilder = new Generalist("Dr.Generalist", model);
         HealthProfessional generalist = generalistbuilder.gethHealthProfessional();
 
         //When
         String specialite = generalist.getSpecialite();
 
         //Then
-        assertThat(specialite, is("Generaliste"));
+        assertThat(specialite, is("Generalist"));
     }
 
     @Test
@@ -130,13 +124,13 @@ public class HealthProTest {
         String specialite = homeopath.getSpecialite();
 
         //Then
-        assertThat(specialite, is("Homeopathe"));
+        assertThat(specialite, is("Homeopath"));
     }
 
     @Test
     public void HealthProfessionalAnneeDiplome() {
         //Given
-        HealthProfessionalBuilder generalistbuilder = new Generaliste("Dr.generalist", model);
+        HealthProfessionalBuilder generalistbuilder = new Generalist("Dr.generalist", model);
         generalistbuilder.builderAnneeDiplome(2015);
         HealthProfessional generalist = generalistbuilder.gethHealthProfessional();
 
@@ -171,23 +165,4 @@ public class HealthProTest {
         assertThat(ssID, is("123456789"));
     }
 
-
-    //PARTIE CONTROLEUR PATIENT
-    /*@Test
-    public void copiessID() {
-        //Given
-        Patient p = model.createPatient("Patient Test", "123456789");
-        PatientView pv = new PatientView(p);
-        ControlerPatient cp = new ControlerPatient(pv, p);
-
-        //When
-        cp.copieSSID();
-
-        //Then
-        
-    }*/
-
-    //PARTIE CONTROLEUR hpro
-
-    //PARTIE CONTROLEUR JFX
 }
