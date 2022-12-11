@@ -25,11 +25,12 @@ public class PatientView implements Observer {
         p.register(this);
         pane.setStyle("-fx-border-color: gray;\n"
                 + "-fx-border-insets: 5;\n"
+                + "-fx-border-radius : 7;"
                 + "-fx-padding: 5;\n"
                 + "-fx-border-width: 1;\n");
 
         final Label l = new Label(p.getName());
-        final Button bSSID = new Button("COPY"); //📋
+        final Button bSSID = new Button("copy ssID"); //📋
 
 
         bSSID.setOnAction(new EventHandler<ActionEvent>() {
@@ -38,24 +39,42 @@ public class PatientView implements Observer {
                 cpv.copieSSID();
             }
         });
-
-        Button bReload = new Button("RELOAD"); //🗘
-        bReload.setOnAction(ActionEvent -> showPrescriptions());
-        final HBox nameBox = new HBox();
-        nameBox.getChildren().addAll(l, bSSID, bReload);
+        
+        final VBox nameBox = new VBox();
+        nameBox.getChildren().addAll(l, bSSID);
+        nameBox.setStyle("-fx-alignment : center;"
+                        + "-fx-padding : 0 0 5 0");
         pane.getChildren().addAll(nameBox, prescriptionPane);
         showPrescriptions();
     }
 
     public void showPrescriptions() {
         prescriptionPane.getChildren().clear();
-        prescriptionPane.getChildren().add(new Label("Prescriptions:\n"));
-        for (final Prescription pr : patient.getPrescriptions()) {
-            prescriptionPane.getChildren().add(new Label("- From "
-                    + pr.getHealthProfessional().getName()
-                    + ": " + pr.getContent()));
+        if (!patient.getPrescriptions().isEmpty()) {
+            Label prescription = new Label("Prescriptions:\n");
+            prescriptionPane.getChildren().add(prescription);
         }
+        
+        prescriptionPane.setStyle("-fx-alignment : center;");
+        for (final Prescription pr : patient.getPrescriptions()) {
+            final Button removeBtn = new Button("x"); 
+            HBox boxpresc = new HBox(new Label("- From " 
+                    + pr.getHealthProfessional().getName() 
+                    + ": " + pr.getContent()), removeBtn);
+            prescriptionPane.getChildren().addAll(boxpresc);
+
+            boxpresc.setStyle("-fx-alignment : center;");
+            removeBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                patient.removePrescription(pr);
+                prescriptionPane.getChildren().remove(pr.getContent());
+                prescriptionPane.getChildren().remove(removeBtn);
+            }
+            });
+            
     }
+}
 
     public Pane asPane() {
         return pane;

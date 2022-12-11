@@ -16,6 +16,7 @@ public class ControlerJFX {
        final String txtname = name.getText().trim();
        final String txtssid = ssid.getText().trim();
        m.createPatient(txtname, txtssid);
-       j.createPatientsWidget(); 
+       j.createPatientsWidget();
+       j.affichagepatient(); 
     }
 }
