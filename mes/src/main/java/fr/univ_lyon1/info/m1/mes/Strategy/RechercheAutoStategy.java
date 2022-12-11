@@ -21,14 +21,14 @@ public class RechercheAutoStategy implements RechercheStrategy {
         if (result.size() == 1) {
             return result.get(0);
         } else {
-            EasyAlert.alert("Développez plus votre recherche");
+            EasyAlert.alert("Développer plus votre recherche");
         }
         return null;
     }
 
     @Override
     public String toString() {
-        String res = "auto";
+        String res = "Auto";
         return res;
     }
 
